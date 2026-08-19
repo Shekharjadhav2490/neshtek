@@ -5,9 +5,14 @@ public record MonitorCheckResult(
         boolean expectedStatus,
         int httpStatus,
         long responseTimeMs,
-        String errorMessage) {
+        String errorMessage,
+        MonitorOutcome outcome) {
 
     public boolean isGatewayFailure() {
-        return httpStatus == 502;
+        return outcome == MonitorOutcome.GATEWAY_FAILURE;
+    }
+
+    public boolean isFailure() {
+        return outcome != MonitorOutcome.UP;
     }
 }
