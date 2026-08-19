@@ -1,37 +1,38 @@
-# Neshtek Static Website (neshtek.com)
+# Neshtek — Enterprise Content, Cloud & AI
 
-This is a static website starter for neshtek.com with the pages:
-- Home (`index.html`)
-- Services (`services.html`)
-- WebCenter (`webcenter.html`)
-- Resources (`resources.html`) + sample blog posts in `/blog`
-- About (`about.html`)
-- Contact (`contact.html`)
-- Privacy (`privacy.html`)
-- Terms (`terms.html`)
+Neshtek is the business website for neshtek.com, focused on Oracle WebCenter Content, Oracle Cloud/OCI, Java/Spring Boot, SOA/OIC, AI document automation and SaaS products.
 
-## Quick preview (local)
-Just open `index.html` in your browser.
+## Website
+- Home — `index.html`
+- Services — `services.html`
+- WebCenter — `webcenter.html`
+- Products / Neshtek Monitor — `products.html`
+- Resources — `resources.html`
+- About — `about.html`
+- Contact — `contact.html`
+- Privacy — `privacy.html`
+- Terms — `terms.html`
 
-## Deploy to GitHub Pages
-1. Create a GitHub repository (example: `neshtek-website`)
-2. Upload all files/folders from this zip to the repo root
-3. Go to **Settings → Pages**
-   - Source: `main` branch
-   - Folder: `/ (root)`
-4. Add Custom Domain: `neshtek.com`
-5. In BigRock DNS:
-   - Apex `neshtek.com`: add A records to GitHub Pages IPs (shown in GitHub Pages settings/docs)
-   - `www`: CNAME to `<your-github-username>.github.io`
-6. After DNS propagates, enable **Enforce HTTPS**
+## Neshtek Monitor — Phase 3
+The Products page is now the first SaaS landing page for Neshtek Monitor, a planned website/API monitoring product focused on uptime, 502/5xx detection, response time, alerts and incident history.
 
-## Contact form
-The Contact page uses Formspree placeholder:
-- Replace `https://formspree.io/f/YOUR_FORM_ID` with your real form endpoint.
+Indicative launch pricing:
+- Starter: ₹499/month
+- Business: ₹1,499/month
+- Enterprise: Custom
 
-## Calendly
-Replace the placeholder with your Calendly iframe embed in `contact.html` under the “Book a call” section.
+Pricing is a planning placeholder and should be validated with pilot customers before launch.
 
+## SaaS roadmap
+1. Website/API monitoring
+2. ECM/WebCenter health monitoring
+3. AI document and invoice automation
 
-## Logo
-This package uses your provided logo at `assets/img/neshtek-logo.png` and favicon `assets/img/favicon-32.png`.
+## Forms and scheduling
+The website uses a Formspree placeholder: `https://formspree.io/f/YOUR_FORM_ID`. Replace it before production use. The booking area can be connected to Calendly or another scheduling provider.
+
+## Deployment
+The site can be deployed as a static website using GitHub Pages or another static hosting provider. Configure the custom domain `neshtek.com` and HTTPS with the selected provider.
+
+## Next technical phase
+Build the Neshtek Monitor application: Spring Boot API, monitoring scheduler/workers, database, alerting, Angular dashboard, authentication, subscriptions and deployment architecture.
