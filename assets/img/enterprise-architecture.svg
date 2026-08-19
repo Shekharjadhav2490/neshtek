@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" role="img" aria-labelledby="t d">
+<title id="t">NeshTek enterprise cloud and integration architecture</title>
+<desc id="d">Professional architecture illustration showing Oracle Cloud Infrastructure, WebCenter Content, Accounts Payable automation, and integrations with Oracle E-Business Suite, JD Edwards EnterpriseOne and SAP.</desc>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fbff"/><stop offset="1" stop-color="#e9f2ff"/></linearGradient>
+ <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1677d2"/><stop offset="1" stop-color="#5b5be7"/></linearGradient>
+ <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0ea5a8"/><stop offset="1" stop-color="#1677d2"/></linearGradient>
+ <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#37618d" flood-opacity=".14"/></filter>
+</defs>
+<rect x="12" y="12" width="736" height="536" rx="34" fill="url(#bg)" stroke="#d8e5f3"/>
+<circle cx="660" cy="70" r="92" fill="#dbeafe" opacity=".5"/><circle cx="90" cy="485" r="80" fill="#dbeafe" opacity=".42"/>
+<text x="52" y="58" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="800" letter-spacing="1.7" fill="#1677d2">NESH​TEK • ENTERPRISE TECHNOLOGY</text>
+<text x="52" y="83" font-family="Inter,Arial,sans-serif" font-size="11" fill="#64748b">Cloud modernization • Content • Integration • AI automation</text>
+<!-- top platform -->
+<g filter="url(#shadow)"><rect x="230" y="110" width="300" height="112" rx="24" fill="#fff" stroke="#c9dcf0"/>
+<rect x="250" y="130" width="58" height="58" rx="17" fill="url(#brand)"/><path d="M266 173v-28c0-4 3-7 7-7 3 0 5 2 7 5l10 15v-13c0-4 3-7 7-7s7 3 7 7v28c0 4-3 7-7 7-3 0-5-2-7-5l-10-15v13c0 4-3 7-7 7s-7-3-7-7Z" fill="#fff"/>
+<text x="325" y="151" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="800" fill="#172033">NeshTek Cloud Hub</text><text x="325" y="173" font-family="Inter,Arial,sans-serif" font-size="12" fill="#64748b">Oracle Cloud Infrastructure (OCI)</text><text x="325" y="193" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1677d2" font-weight="700">Cloud-native • Secure • Scalable</text></g>
+<!-- middle -->
+<g filter="url(#shadow)"><rect x="60" y="276" width="195" height="100" rx="20" fill="#fff" stroke="#c9dcf0"/><text x="82" y="307" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="800" fill="#e14d45">ORACLE</text><text x="82" y="333" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="800" fill="#172033">WebCenter Content</text><text x="82" y="353" font-family="Inter,Arial,sans-serif" font-size="11" fill="#64748b">Enterprise Content Management</text></g>
+<g filter="url(#shadow)"><rect x="282" y="264" width="196" height="124" rx="22" fill="url(#brand)"/><text x="312" y="299" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="800" fill="#dbeafe">AI AUTOMATION</text><text x="312" y="328" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="800" fill="#fff">Accounts Payable</text><text x="312" y="351" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="800" fill="#fff">Modernization</text><text x="312" y="372" font-family="Inter,Arial,sans-serif" font-size="10" fill="#e0e7ff">Capture • Extract • Validate • Approve</text></g>
+<g filter="url(#shadow)"><rect x="505" y="276" width="195" height="100" rx="20" fill="#fff" stroke="#c9dcf0"/><text x="527" y="307" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="800" fill="#1677d2">INTEGRATION</text><text x="527" y="333" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="800" fill="#172033">Enterprise Systems</text><text x="527" y="354" font-family="Inter,Arial,sans-serif" font-size="11" fill="#64748b">EBS • JDE • SAP</text></g>
+<!-- bottom systems -->
+<g filter="url(#shadow)"><rect x="75" y="432" width="178" height="74" rx="17" fill="#fff" stroke="#d6e3ef"/><text x="95" y="460" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="800" fill="#e14d45">ORACLE</text><text x="95" y="482" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" fill="#172033">E-Business Suite</text></g>
+<g filter="url(#shadow)"><rect x="291" y="432" width="178" height="74" rx="17" fill="#fff" stroke="#d6e3ef"/><text x="311" y="460" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="800" fill="#1677d2">ORACLE</text><text x="311" y="482" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" fill="#172033">JD Edwards EnterpriseOne</text></g>
+<g filter="url(#shadow)"><rect x="507" y="432" width="178" height="74" rx="17" fill="#fff" stroke="#d6e3ef"/><text x="527" y="460" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="800" fill="#0f8a75">SAP</text><text x="527" y="482" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="800" fill="#172033">ERP Integration</text></g>
+<!-- connectors -->
+<g fill="none" stroke="url(#teal)" stroke-width="3" stroke-linecap="round" opacity=".7"><path d="M380 222v42"/><path d="M282 326h-27"/><path d="M478 326h27"/><path d="M160 432v-56"/><path d="M380 432v-44"/><path d="M596 432v-56"/></g>
+<g fill="#fff" stroke="#58a8d6" stroke-width="2"><circle cx="380" cy="264" r="5"/><circle cx="255" cy="326" r="5"/><circle cx="505" cy="326" r="5"/><circle cx="160" cy="376" r="5"/><circle cx="380" cy="388" r="5"/><circle cx="596" cy="376" r="5"/></g>
+</svg>
