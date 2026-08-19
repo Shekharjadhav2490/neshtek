@@ -1,0 +1,53 @@
+<main class="dashboard-shell">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">NESH​​TEK MONITOR</p>
+      <h1>Monitoring Dashboard</h1>
+      <p class="subtitle">Website and API availability at a glance.</p>
+    </div>
+    <button class="primary-button" type="button">+ Add Monitor</button>
+  </header>
+
+  <section class="summary-grid" aria-label="Monitoring summary">
+    <article class="summary-card">
+      <span>Total Monitors</span>
+      <strong>{{ monitors.length }}</strong>
+    </article>
+    <article class="summary-card">
+      <span>Healthy</span>
+      <strong>0</strong>
+    </article>
+    <article class="summary-card">
+      <span>Incidents</span>
+      <strong>0</strong>
+    </article>
+    <article class="summary-card">
+      <span>Avg. Response</span>
+      <strong>--</strong>
+    </article>
+  </section>
+
+  <section class="panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Your monitors</h2>
+        <p>Live monitor status will appear here once the API is connected.</p>
+      </div>
+      <span class="connection-badge">API pending</span>
+    </div>
+
+    <div class="monitor-list">
+      <article class="monitor-card" *ngFor="let monitor of monitors">
+        <div class="status-dot" [class.unknown]="monitor.status === 'UNKNOWN'"></div>
+        <div class="monitor-main">
+          <h3>{{ monitor.name }}</h3>
+          <p>{{ monitor.url }}</p>
+        </div>
+        <div class="metric"><span>Status</span><strong>{{ monitor.status }}</strong></div>
+        <div class="metric"><span>Uptime</span><strong>{{ monitor.uptime }}</strong></div>
+        <div class="metric"><span>Response</span><strong>{{ monitor.responseTime }}</strong></div>
+        <div class="metric"><span>Incident</span><strong>{{ monitor.incident }}</strong></div>
+      </article>
+    </div>
+  </section>
+</main>
