@@ -5,49 +5,67 @@
       <h1>Monitoring Dashboard</h1>
       <p class="subtitle">Website and API availability at a glance.</p>
     </div>
-    <button class="primary-button" type="button">+ Add Monitor</button>
+    <button class="primary-button" type="button" (click)="openCreate()">+ Add Monitor</button>
   </header>
 
+  <div class="error-banner" *ngIf="error">{{ error }}</div>
+
   <section class="summary-grid" aria-label="Monitoring summary">
-    <article class="summary-card">
-      <span>Total Monitors</span>
-      <strong>{{ monitors.length }}</strong>
-    </article>
-    <article class="summary-card">
-      <span>Healthy</span>
-      <strong>0</strong>
-    </article>
-    <article class="summary-card">
-      <span>Incidents</span>
-      <strong>0</strong>
-    </article>
-    <article class="summary-card">
-      <span>Avg. Response</span>
-      <strong>--</strong>
-    </article>
+    <article class="summary-card"><span>Total Monitors</span><strong>{{ monitors.length }}</strong></article>
+    <article class="summary-card"><span>Healthy</span><strong>{{ monitors.filter(m => status(m) === 'UP').length }}</strong></article>
+    <article class="summary-card"><span>Gateway Failures</span><strong>{{ totalGatewayFailures }}</strong></article>
+    <article class="summary-card"><span>Avg. Response</span><strong>{{ averageResponse }}{{ averageResponse === '--' ? '' : ' ms' }}</strong></article>
   </section>
 
   <section class="panel">
     <div class="panel-heading">
-      <div>
-        <h2>Your monitors</h2>
-        <p>Live monitor status will appear here once the API is connected.</p>
-      </div>
-      <span class="connection-badge">API pending</span>
+      <div><h2>Your monitors</h2><p>Live status is loaded from the Neshtek Monitor API.</p></div>
+      <span class="connection-badge" [class.connected]="!loading && !error">{{ loading ? 'Connecting…' : (error ? 'API error' : 'API connected') }}</span>
     </div>
 
-    <div class="monitor-list">
+    <div class="loading" *ngIf="loading">Loading monitors…</div>
+    <div class="empty" *ngIf="!loading && monitors.length === 0">No monitors yet. Add your first website or API endpoint.</div>
+
+    <div class="monitor-list" *ngIf="!loading && monitors.length">
       <article class="monitor-card" *ngFor="let monitor of monitors">
-        <div class="status-dot" [class.unknown]="monitor.status === 'UNKNOWN'"></div>
-        <div class="monitor-main">
-          <h3>{{ monitor.name }}</h3>
-          <p>{{ monitor.url }}</p>
+        <div class="status-dot" [class.up]="status(monitor) === 'UP'" [class.down]="status(monitor) === 'DOWN'"></div>
+        <div class="monitor-main"><h3>{{ monitor.name }}</h3><p>{{ monitor.url }}</p></div>
+        <div class="metric"><span>Status</span><strong [class.failure]="status(monitor) === 'DOWN'">{{ statusLabel(monitor) }}</strong></div>
+        <div class="metric"><span>Uptime</span><strong>{{ uptime(monitor) }}</strong></div>
+        <div class="metric"><span>Response</span><strong>{{ response(monitor) }}</strong></div>
+        <div class="metric actions">
+          <button type="button" (click)="checkNow(monitor)" [disabled]="checkingId === monitor.id">{{ checkingId === monitor.id ? 'Checking…' : 'Check Now' }}</button>
+          <button type="button" (click)="openEdit(monitor)">Edit</button>
+          <button type="button" class="danger" (click)="deleteMonitor(monitor)">Delete</button>
         </div>
-        <div class="metric"><span>Status</span><strong>{{ monitor.status }}</strong></div>
-        <div class="metric"><span>Uptime</span><strong>{{ monitor.uptime }}</strong></div>
-        <div class="metric"><span>Response</span><strong>{{ monitor.responseTime }}</strong></div>
-        <div class="metric"><span>Incident</span><strong>{{ monitor.incident }}</strong></div>
       </article>
     </div>
   </section>
+
+  <section class="panel analytics-panel" *ngIf="selectedMonitor">
+    <div class="panel-heading"><div><h2>{{ selectedMonitor.name }} analytics</h2><p>Recent monitoring performance.</p></div></div>
+    <div class="analytics-grid">
+      <div><span>Checks</span><strong>{{ selectedAnalytics?.totalChecks ?? '--' }}</strong></div>
+      <div><span>Uptime</span><strong>{{ selectedAnalytics ? (selectedAnalytics.uptimePercent | number:'1.2-2') + '%' : '--' }}</strong></div>
+      <div><span>502 Failures</span><strong>{{ selectedAnalytics?.gatewayFailures ?? '--' }}</strong></div>
+      <div><span>Avg Response</span><strong>{{ selectedAnalytics ? (selectedAnalytics.averageResponseTimeMs | number:'1.0-0') + ' ms' : '--' }}</strong></div>
+    </div>
+  </section>
+
+  <div class="modal-backdrop" *ngIf="showForm" (click)="closeForm()">
+    <section class="modal" (click)="$event.stopPropagation()">
+      <div class="modal-heading"><div><h2>{{ editingId ? 'Edit monitor' : 'Add monitor' }}</h2><p>Configure a website or API endpoint.</p></div><button type="button" class="icon-button" (click)="closeForm()">×</button></div>
+      <form (ngSubmit)="saveMonitor()">
+        <label>Name<input name="name" [(ngModel)]="form.name" required maxlength="120" placeholder="Production WebCenter" /></label>
+        <label>URL<input name="url" [(ngModel)]="form.url" required type="url" placeholder="https://example.com" /></label>
+        <div class="form-grid">
+          <label>Check interval (seconds)<input name="interval" [(ngModel)]="form.checkIntervalSeconds" type="number" min="30" /></label>
+          <label>Timeout (seconds)<input name="timeout" [(ngModel)]="form.timeoutSeconds" type="number" min="1" /></label>
+          <label>Expected HTTP status<input name="expected" [(ngModel)]="form.expectedStatus" type="number" min="100" max="599" /></label>
+          <label>Status<select name="status" [(ngModel)]="form.status"><option value="ACTIVE">Active</option><option value="PAUSED">Paused</option></select></label>
+        </div>
+        <div class="form-actions"><button type="button" class="secondary-button" (click)="closeForm()">Cancel</button><button type="submit" class="primary-button" [disabled]="saving">{{ saving ? 'Saving…' : 'Save Monitor' }}</button></div>
+      </form>
+    </section>
+  </div>
 </main>
