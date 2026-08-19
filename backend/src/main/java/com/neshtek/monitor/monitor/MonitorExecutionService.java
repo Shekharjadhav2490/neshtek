@@ -14,15 +14,15 @@ public class MonitorExecutionService {
 
     private final MonitorRepository monitorRepository;
     private final IncidentRepository incidentRepository;
-    private final MonitorChecker checker;
+    private final MonitorAttemptService attemptService;
 
     public MonitorExecutionService(
             MonitorRepository monitorRepository,
             IncidentRepository incidentRepository,
-            MonitorChecker checker) {
+            MonitorAttemptService attemptService) {
         this.monitorRepository = monitorRepository;
         this.incidentRepository = incidentRepository;
-        this.checker = checker;
+        this.attemptService = attemptService;
     }
 
     @Transactional
@@ -33,7 +33,7 @@ public class MonitorExecutionService {
 
     @Transactional
     public MonitorCheckResult checkMonitor(Monitor monitor) {
-        MonitorCheckResult result = checker.check(monitor);
+        MonitorCheckResult result = attemptService.checkWithRetry(monitor);
         updateIncidentState(monitor, result);
         return result;
     }
@@ -47,7 +47,7 @@ public class MonitorExecutionService {
                 .findFirst()
                 .orElse(null);
 
-        if (result.available() && result.expectedStatus()) {
+        if (!result.isFailure()) {
             if (openIncident != null) {
                 openIncident.setStatus(IncidentStatus.RESOLVED);
                 openIncident.setResolvedAt(Instant.now());
