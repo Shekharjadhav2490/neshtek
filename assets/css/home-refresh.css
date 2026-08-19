@@ -1,15 +1,15 @@
-/* NeshTek homepage refinement: sober typography, stronger hierarchy and professional enterprise visual */
-.hero-fresh{padding:58px 0 68px}
-.hero-fresh .hero-grid{grid-template-columns:minmax(0,1.02fr) minmax(500px,.98fr);gap:48px}
-.hero-fresh h1{font-size:clamp(42px,4.7vw,58px);line-height:1.08;letter-spacing:-1.7px;margin:18px 0 16px}
-.hero-fresh p.lead{font-size:17px;line-height:1.65;max-width:650px;margin-bottom:22px}
+/* NeshTek homepage refinement: sober typography, readable architecture, balanced enterprise layout */
+.hero-fresh{padding:56px 0 64px}
+.hero-fresh .hero-grid{grid-template-columns:minmax(0,1fr) minmax(520px,.98fr);gap:42px;align-items:center}
+.hero-fresh h1{font-size:clamp(40px,4.4vw,56px);line-height:1.08;letter-spacing:-1.6px;margin:18px 0 16px;max-width:620px}
+.hero-fresh p.lead{font-size:17px;line-height:1.65;max-width:620px;margin-bottom:21px}
 .hero-fresh .kicker{font-size:12px;padding:7px 11px}
 .hero-fresh .feature-pills{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:20px 0}
-.hero-fresh .feature-pills>div{padding:10px 12px;border-radius:12px}
-.hero-fresh .feature-pills b{font-size:12px}
-.hero-fresh .feature-pills span{font-size:11px;margin-top:2px}
-.hero-fresh .hero-visual{min-height:520px;border-radius:26px;background:#f7fbff;box-shadow:0 20px 60px rgba(37,67,100,.10)}
-.home-architecture{width:100%;height:100%;min-height:520px;display:block;object-fit:contain}
+.hero-fresh .feature-pills>div{padding:11px 13px;border-radius:12px;min-height:65px}
+.hero-fresh .feature-pills b{font-size:12px;line-height:1.35}
+.hero-fresh .feature-pills span{font-size:11px;line-height:1.45;margin-top:4px;color:var(--muted)}
+.hero-fresh .hero-visual{min-height:520px;border-radius:26px;background:#f7fbff;box-shadow:0 20px 60px rgba(37,67,100,.10);display:flex;align-items:center;justify-content:center;padding:8px;overflow:hidden}
+.home-architecture{width:100%;height:auto;min-height:0;display:block;object-fit:contain}
 .hero-fresh .btnrow{gap:10px}
 .hero-fresh .cta,.hero-fresh .btn{font-size:13px;padding:10px 15px}
 .home-expertise{padding:64px 0;background:#f7fbff;border-top:1px solid #e8eff6;border-bottom:1px solid #e8eff6}
@@ -28,4 +28,4 @@
 .mod-list{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}
 .mod-list div{padding:10px 11px;border-radius:11px;background:#f5f9fd;border:1px solid #e4edf5;font-size:12px;color:#33445b}
 @media(max-width:1000px){.hero-fresh .hero-grid{grid-template-columns:1fr}.hero-fresh .hero-visual{max-width:760px;margin:0 auto}.expertise-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:650px){.hero-fresh{padding-top:38px}.hero-fresh h1{font-size:40px;letter-spacing:-1px}.hero-fresh p.lead{font-size:16px}.hero-fresh .feature-pills{grid-template-columns:1fr}.hero-fresh .hero-visual{min-height:360px}.home-architecture{min-height:360px}.expertise-grid,.modernization-grid{grid-template-columns:1fr}.mod-list{grid-template-columns:1fr}}
+@media(max-width:650px){.hero-fresh{padding-top:38px}.hero-fresh h1{font-size:40px;letter-spacing:-1px}.hero-fresh p.lead{font-size:16px}.hero-fresh .feature-pills{grid-template-columns:1fr}.hero-fresh .hero-visual{min-height:360px;padding:4px}.home-architecture{width:100%}.expertise-grid,.modernization-grid{grid-template-columns:1fr}.mod-list{grid-template-columns:1fr}}
