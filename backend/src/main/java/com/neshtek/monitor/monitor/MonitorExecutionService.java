@@ -1,5 +1,7 @@
 package com.neshtek.monitor.monitor;
 
+import com.neshtek.monitor.check.MonitorCheck;
+import com.neshtek.monitor.check.MonitorCheckRepository;
 import com.neshtek.monitor.incident.Incident;
 import com.neshtek.monitor.incident.IncidentRepository;
 import com.neshtek.monitor.incident.IncidentStatus;
@@ -14,14 +16,17 @@ public class MonitorExecutionService {
 
     private final MonitorRepository monitorRepository;
     private final IncidentRepository incidentRepository;
+    private final MonitorCheckRepository checkRepository;
     private final MonitorAttemptService attemptService;
 
     public MonitorExecutionService(
             MonitorRepository monitorRepository,
             IncidentRepository incidentRepository,
+            MonitorCheckRepository checkRepository,
             MonitorAttemptService attemptService) {
         this.monitorRepository = monitorRepository;
         this.incidentRepository = incidentRepository;
+        this.checkRepository = checkRepository;
         this.attemptService = attemptService;
     }
 
@@ -34,8 +39,19 @@ public class MonitorExecutionService {
     @Transactional
     public MonitorCheckResult checkMonitor(Monitor monitor) {
         MonitorCheckResult result = attemptService.checkWithRetry(monitor);
+        persistCheck(monitor, result);
         updateIncidentState(monitor, result);
         return result;
+    }
+
+    private void persistCheck(Monitor monitor, MonitorCheckResult result) {
+        MonitorCheck check = new MonitorCheck();
+        check.setMonitor(monitor);
+        check.setHttpStatus(result.httpStatus() == 0 ? null : result.httpStatus());
+        check.setResponseTimeMs(result.responseTimeMs());
+        check.setOutcome(result.outcome().name());
+        check.setErrorMessage(result.errorMessage());
+        checkRepository.save(check);
     }
 
     private void updateIncidentState(Monitor monitor, MonitorCheckResult result) {
